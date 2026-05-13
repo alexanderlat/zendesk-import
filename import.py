@@ -34,7 +34,7 @@ def sla_op_in_supabase(zendesk_id, subject, vraag, antwoord, embedding):
         'embedding': embedding
     }
     response = requests.post(
-        f'{SUPABASE_URL}tickets',
+        f'{SUPABASE_URL}/tickets',
         headers=headers,
         json=data
     )
