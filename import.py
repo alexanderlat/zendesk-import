@@ -5,7 +5,7 @@ from openai import OpenAI
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 ZENDESK_SUBDOMAIN = os.environ.get('ZENDESK_SUBDOMAIN')
 ZENDESK_EMAIL = os.environ.get('ZENDESK_EMAIL')
-ZENDESK_TOKEN = os.environ.get('ZENDESK_TOKEN')
+ZENDESK_TOKEN = os.environ.get('ZENDESK_TOKEN_IMPORT')
 SUPABASE_URL = os.environ.get('SUPABASE_URL')
 SUPABASE_KEY = os.environ.get('SUPABASE_KEY')
 
