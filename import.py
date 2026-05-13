@@ -39,16 +39,15 @@ def sla_op_in_supabase(zendesk_id, subject, vraag, antwoord, embedding):
     return response.status_code
 
 def get_agent_ids():
-    auth = (f'{ZENDESK_EMAIL}/token', ZENDESK_TOKEN)
-    agent_ids = []
+    auth_string = f'{ZENDESK_EMAIL}/token'
+    print(f'Auth email: {auth_string}', flush=True)
+    print(f'Token lengte: {len(ZENDESK_TOKEN) if ZENDESK_TOKEN else 0}', flush=True)
+    auth = (auth_string, ZENDESK_TOKEN)
     url = f'https://{ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/users.json?role=agent&per_page=100'
-    while url:
-        response = requests.get(url, auth=auth)
-        data = response.json()
-        print(f'Agents response: {data}', flush=True)
-        agent_ids += [user['id'] for user in data.get('users', [])]
-        url = data.get('next_page')
-    return agent_ids
+    response = requests.get(url, auth=auth)
+    data = response.json()
+    print(f'Agents response: {data}', flush=True)
+    return [user['id'] for user in data.get('users', [])]
 
 def importeer_tickets():
     auth = (f'{ZENDESK_EMAIL}/token', ZENDESK_TOKEN)
