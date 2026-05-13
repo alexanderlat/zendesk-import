@@ -19,6 +19,7 @@ def get_embedding(tekst):
     return response.data[0].embedding
 
 def sla_op_in_supabase(zendesk_id, subject, vraag, antwoord, embedding):
+    print(f'Supabase URL: {SUPABASE_URL}tickets', flush=True)
     headers = {
         'apikey': SUPABASE_KEY,
         'Authorization': f'Bearer {SUPABASE_KEY}',
