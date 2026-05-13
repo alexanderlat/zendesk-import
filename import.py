@@ -22,7 +22,8 @@ def sla_op_in_supabase(zendesk_id, subject, vraag, antwoord, embedding):
     headers = {
         'apikey': SUPABASE_KEY,
         'Authorization': f'Bearer {SUPABASE_KEY}',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
     }
     data = {
         'zendesk_id': str(zendesk_id),
@@ -36,6 +37,8 @@ def sla_op_in_supabase(zendesk_id, subject, vraag, antwoord, embedding):
         headers=headers,
         json=data
     )
+    if response.status_code != 201:
+        print(f'Supabase fout: {response.status_code} - {response.text}', flush=True)
     return response.status_code
 
 def get_agent_ids():
